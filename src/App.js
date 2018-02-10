@@ -242,7 +242,7 @@ class App extends Component {
             isShowDialog: false,
         });
     }
-
+    //组件渲染完成
     componentDidMount() {
 
 
@@ -288,6 +288,8 @@ class App extends Component {
         }
     }
 
+
+    //组件即将渲染
     componentWillMount() {
         //获取fm接口数据
         this.getFmData()
