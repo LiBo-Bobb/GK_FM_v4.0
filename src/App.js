@@ -292,12 +292,12 @@ class App extends Component {
         //获取fm接口数据
         this.getFmData()
     }
-
     //获取FM数据
     getFmData = () => {
-        // http://test.gankao.com/api/fm/showGrowCourse?id=19862
+        // http://test.gankao.com/api/fm/showGrowCourse?id=26788
         try {
-            request.get(this.getFmApi + "/api/fm/showGrowCourse?id=" + this.courseId).then(
+            // this.getFmApi + "/api/fm/showGrowCourse?id=" + this.courseId
+            request.get("gk_grow_course.json").then(
                 res => {
                     try {
                         // console.log("请求FM数据的全部返回内容........")
