@@ -192,7 +192,7 @@ export default class SingleComment extends Component {
 
 
     render() {
-        let {comment, subComment, isShowInputArea, replayComentId, err} = this.state;
+        let {comment, subComment, isShowInputArea, replayComentId} = this.state;
         let commentElement = <div>
             <div>
                 <Dialog type="ios" title={this.state.style1.title} buttons={this.state.style1.buttons}

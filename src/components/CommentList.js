@@ -294,7 +294,7 @@ export default class CommentList extends Component {
         };
 
 
-        let {subComment, nextPageFromTime, subjectId, subjectGoodCount} = this.state;
+        let {subComment, nextPageFromTime} = this.state;
         // console.log("主题点赞数...."+subjectGoodCount)
         /* console.log("nextPageFromTime......")
          console.log(nextPageFromTime)*/

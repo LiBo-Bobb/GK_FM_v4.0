@@ -1,5 +1,6 @@
 import React from 'react'
-import { Component} from 'react'
+import {Component} from 'react'
+
 export default class TimeCounter extends Component {
     // 定义属性
     /*static propTypes = {
@@ -20,10 +21,11 @@ export default class TimeCounter extends Component {
         this.interval = undefined;
         this.step = this.props.step || 1;
     }
-    stop() {//清除计时器
+
+    //清除计时器
+    stop() {
         clearInterval(this.interval);
     }
-
 
     start() {//计时器开始
         this.stop();
@@ -33,31 +35,37 @@ export default class TimeCounter extends Component {
                 this.props.onStep({count, time: this.state.time});
             }
             let minute = Math.floor(count / 60);
-            if(minute<10){
-                minute="0"+minute
+            if (minute < 10) {
+                minute = "0" + minute
             }
             let seconds = Math.floor(count % 60);
-            if(seconds<10){
-                seconds="0"+seconds
+            if (seconds < 10) {
+                seconds = "0" + seconds
             }
             this.setState({count, time: `${minute}:${seconds}`});
         }, 1000);
     }
-    restart() {//重新计时
+
+    //重新计时
+    restart() {
         this.stop();
         this.setState({count: this.initValue});
         this.start();
     }
+
     componentDidMount() {
         this.props.autoStart && this.start();
     }
+
+    //组件卸载的时候吧定时器卸载
     componentWillUnmount() {
         this.stop();
     }
+
     render() {
         // let color = {color: "white",fontSize:'14px'}
-        let { style } = this.props
+        let {style} = this.props
         return (
-            <span style={{...style }}>{this.props.showMinute ? this.state.time : this.state.count}</span>)
+            <span style={{...style}}>{this.props.showMinute ? this.state.time : this.state.count}</span>)
     }
 }

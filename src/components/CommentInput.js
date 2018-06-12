@@ -4,8 +4,6 @@
 import React, {Component} from 'react';
 import likeIconBig from "../img/likeIconBig.png"
 import goodActive from "../img/goodActive.png"
-import commentBig from "../img/commentBig.png"
-import {hashHistory} from 'react-router'
 import {checkIsNeedLogin} from './lib'
 
 

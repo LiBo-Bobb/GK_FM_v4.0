@@ -21,7 +21,6 @@ import CommentInput from "./components/CommentInput"
 import CommentImputArea from "./components/CommentImputArea"
 import FmList from "./components/FmList"
 import Slider from "rc-slider";
-import {Helmet} from "react-helmet"
 import {
     ActionSheet,
     Article,
@@ -42,13 +41,11 @@ class App extends Component {
 
         //传过来的sectionId是多少，就优先播放该音频
         this.sectionId = window._fm.sectionId;
-
         //fM数据接口前缀
         this.getFmApi = window._fm.getFmApi;
         this.state = {
             // FM资源music,
             music: [],
-
             //初始音频索引
             currentFm: 0,
             //test
@@ -242,6 +239,7 @@ class App extends Component {
             isShowDialog: false,
         });
     }
+
     //组件渲染完成
     componentDidMount() {
 
@@ -267,13 +265,6 @@ class App extends Component {
 
 
         };
-        /* this.refs.audio.oncanplay = () => {
-         console.log(this.refs.audio.currentTime);
-         /!*  console.dir(this.refs.audio.duration);*!/
-         this.setState({
-         duration: this.time(this.refs.audio.duration),
-         })
-         }*/
         //监听音频的总时间
         this.refs.audio.ondurationchange = () => {
             this.setState({
@@ -294,6 +285,7 @@ class App extends Component {
         //获取fm接口数据
         this.getFmData()
     }
+
     //获取FM数据
     getFmData = () => {
         // http://test.gankao.com/api/fm/showGrowCourse?id=26788
@@ -320,7 +312,7 @@ class App extends Component {
                             commentSubjectKey: fmSections[currentFm].commentSubjectKey
                         };
                         for (let i = 0, len = fmSections.length; i < len; i++) {
-                            if (this.sectionId == fmSections[i].id) {
+                            if (this.sectionId === fmSections[i].id) {
                                 currentFm = i;
                                 break;
                             }
@@ -373,8 +365,7 @@ class App extends Component {
     }
     //播放上一个音频
     prePlay = () => {
-        let {currentFm, music} = this.state;
-        let currentMusic = music[currentFm];
+        let {currentFm} = this.state;
         //当前音频索引
         currentFm--;
         if (currentFm < 0) {
@@ -401,7 +392,6 @@ class App extends Component {
     //播放下一个
     nextPlay = () => {
         let {currentFm, music} = this.state;
-        let currentMusic = music[currentFm];
         currentFm++;
         if (currentFm === music.length) {
             // currentFm = 0
@@ -487,9 +477,6 @@ class App extends Component {
         if (isiOS) {
             return "IOS"
         }
-        /* if (isAndroid) {
-             return "android"
-         }*/
         return "other"
     }
 
@@ -522,7 +509,7 @@ class App extends Component {
     }
 
     render() {
-        let {music, subjectContent, commentSubjectKey, currentFm, duration, currentTime, countDown, ended, isShowInputArea, isShowFmList, goodMarkedByMe} = this.state;
+        let {music, commentSubjectKey, currentFm, duration, currentTime, countDown, ended, isShowInputArea, isShowFmList, goodMarkedByMe} = this.state;
         let animationClassName = !this.state.ended ? 'rotate start' : 'rotate stop';
 
         //音频播放速率调节
@@ -535,17 +522,8 @@ class App extends Component {
                                     {!this.state.ended && this.refs.audio.playbackRate + "X"}
                                 </span>
         </div>
-        // console.log("接口数据.....")
-        // console.log(music)
-        // console.log("commentSubjectKey... start")
-        // console.log(commentSubjectKey);
-        // console.log("commentSubjectKey...end")
-        // console.log("浏览器.......")
-        // console.log(BrowserType())
-        // alert(BrowserType()
 
         //检测浏览器类型
-        let browserType = this.browserType();
         //检测终端类型
         let isIOS = this.isIOS()
         // console.log("浏览器",browserType)
@@ -571,7 +549,7 @@ class App extends Component {
                             <div className="wrp">
                                 {/*根据浏览器类型决定是否显示调速功能，该功能只支持chrome&safari浏览器*/}
                                 {/*{browserType == "Safari" || browserType == "Chrome" ? isShowSpeed : ""}*/}
-                                {isIOS == "IOS" ? isShowSpeed : ""}
+                                {isIOS === "IOS" ? isShowSpeed : ""}
                                 {/*标题*/}
                                 <div className="fmTitle">
                                 <span

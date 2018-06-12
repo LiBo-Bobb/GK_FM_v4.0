@@ -2,7 +2,6 @@
  * Created by libo on 2017/8/30.
  */
 import React, {Component} from "react";
-import {checkIsNeedLogin} from './lib'
 import {
     Form,
     FormCell,
